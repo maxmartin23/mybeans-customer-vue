@@ -1,0 +1,48 @@
+<?xml version="1.0" standalone="no"?><svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 1000 666.6666666666666" preserveAspectRatio="xMaxYMax slice">
+
+  <g transform="scale(0.9995002498750625)">
+    <rect x="0" y="0" width="1000.5" height="667" fill="#ffffff" />
+    <rect x="0" y="0" width="333.5" height="333.5" fill="#edf7fd" />
+    <polygon points="0,0 333.5,0 0,333.5" fill="#d1ebfb" />
+    <rect x="333.5" y="0" width="333.5" height="333.5" fill="#ffffff" />
+    <rect x="333.5" y="0" width="166.75" height="166.75" fill="#1c9deb" />
+    <polygon points="500.25,0 500.25,166.75 333.5,166.75" fill="#72c2f2" />
+    <rect x="500.25" y="0" width="166.75" height="166.75" fill="#64bcf1" />
+    <polygon points="500.25,0 667,166.75 500.25,166.75" fill="#bce2f9" />
+    <rect x="333.5" y="166.75" width="166.75" height="166.75" fill="#cbe9fa" />
+    <polygon points="333.5,166.75 500.25,166.75 333.5,333.5" fill="#179bea" />
+    <rect x="500.25" y="166.75" width="166.75" height="166.75" fill="#f4fafe" />
+    <polygon points="500.25,166.75 667,166.75 667,333.5" fill="#37a9ed" />
+    <rect x="667" y="0" width="333.5" height="333.5" fill="#9ad3f6" />
+    <rect x="667" y="0" width="333.5" height="333.5" fill="#149aea" />
+    <rect x="0" y="333.5" width="333.5" height="333.5" fill="#ffffff" />
+    <rect x="0" y="333.5" width="166.75" height="166.75" fill="#59b7f0" />
+    <path d="M 0 333.5 A 166.75 166.75 0 0 0 166.75 500.25 L 166.75 333.5" fill="#91cff5" />
+    <rect x="166.75" y="333.5" width="166.75" height="166.75" fill="#8ecef5" />
+    <path d="M 166.75 500.25 A 166.75 166.75 0 0 0 333.5 333.5 L 166.75 333.5" fill="#d5edfb" />
+    <rect x="0" y="500.25" width="166.75" height="166.75" fill="#a6d8f7" />
+    <path d="M 0 667 A 166.75 166.75 0 0 1  166.75 500.25 L 166.75 667" fill="#9fd6f6" />
+    <rect x="166.75" y="500.25" width="166.75" height="166.75" fill="#4eb2ef" />
+    <path d="M 166.75 500.25 A 166.75 166.75 0 0 1 333.5 667 L 166.75 667" fill="#dcf0fc" />
+    <rect x="333.5" y="333.5" width="333.5" height="333.5" fill="#ffffff" />
+    <rect x="333.5" y="333.5" width="166.75" height="166.75" fill="#1e9eeb" />
+    <path d="M 333.5 500.25 A 166.75 166.75 0 0 1  500.25 333.5 L 500.25 500.25" fill="#4db2ef" />
+    <rect x="500.25" y="333.5" width="166.75" height="166.75" fill="#bce2f9" />
+    <path d="M 500.25 333.5 A 166.75 166.75 0 0 1 667 500.25 L 500.25 500.25" fill="#ddf0fc" />
+    <rect x="333.5" y="500.25" width="166.75" height="166.75" fill="#76c4f3" />
+    <path d="M 333.5 500.25 A 166.75 166.75 0 0 0 500.25 667 L 500.25 500.25" fill="#fafdff" />
+    <rect x="500.25" y="500.25" width="166.75" height="166.75" fill="#8bcdf5" />
+    <path d="M 500.25 667 A 166.75 166.75 0 0 0 667 500.25 L 500.25 500.25" fill="#bae1f9" />
+    <rect x="667" y="333.5" width="333.5" height="333.5" fill="#ffffff" />
+    <rect x="667" y="333.5" width="166.75" height="166.75" fill="#8ccdf5" />
+    <polygon points="833.75,333.5 833.75,500.25 667,500.25" fill="#57b7f0" />
+    <rect x="833.75" y="333.5" width="166.75" height="166.75" fill="#74c3f3" />
+    <polygon points="833.75,333.5 1000.5,333.5 833.75,500.25" fill="#66bdf1" />
+    <rect x="667" y="500.25" width="166.75" height="166.75" fill="#7dc7f3" />
+    <polygon points="667,500.25 833.75,500.25 833.75,667" fill="#6ec0f2" />
+    <rect x="833.75" y="500.25" width="166.75" height="166.75" fill="#9ed5f6" />
+    <polygon points="833.75,500.25 1000.5,667 833.75,667" fill="#93d0f5" />
+  </g>
+  <rect x="0" y="0" width="1000" height="666.6666666666666" style="fill: rgba(255,255,255,0.75)" />
+</svg>

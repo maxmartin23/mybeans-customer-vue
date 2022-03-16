@@ -1,0 +1,41 @@
+
+.fade-shrink-enter-active,
+.fade-shrink-leave-active
+  transition: 0.15s
+
+.fade-shrink-leave-to,
+.fade-shrink-enter
+  transform: scale(0.87)
+  opacity: 0
+
+.fade-enter-active,
+.fade-leave-active
+  transition: 0.3s
+
+  .push-enter-active,
+  .push-leave-active,
+  .pop-enter-active,
+  .pop-leave-active
+    transition: 0.3s
+    position: absolute
+  /* transition-timing-function: cubic-bezier(0.4, 0.8, 0.25, 1); */
+
+.push-leave-to
+  transform: scale(0.9)
+  z-index: 1
+
+.push-enter
+  transform: translateX(100vw)
+
+  &-active
+    z-index: 2
+
+.pop-leave-to
+  transform: translateX(100vw)
+  z-index: 2
+
+.pop-enter
+  transform: scale(0.9)
+
+.pop-leave-active
+  z-index: 1
