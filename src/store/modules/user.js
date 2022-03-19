@@ -26,6 +26,9 @@ const store = {
       state.token = token ?? state.token;
     },
   },
+  getters:{
+    getToken : state => state.token
+  }
 };
 
 export default store
