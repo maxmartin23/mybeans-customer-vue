@@ -13,6 +13,7 @@
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "email-validator": "^2.0.4",
+    "fuse.js": "^6.5.3",
     "leaflet": "^1.7.1",
     "leaflet-vue": "^0.1.0",
     "vue": "^2.6.11",
