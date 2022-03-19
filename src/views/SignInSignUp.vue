@@ -36,6 +36,7 @@ export default {
     border-bottom-left-radius: 0 !important;
     width: 64rem;
     max-width: calc(100vw - 280px);
+    overflow-y : auto
   }
 }
 
@@ -45,6 +46,7 @@ export default {
     height: 100vh !important;
     width: 100vw !important;
     border-radius: 0 !important;
+    
   }
 }
 </style>
