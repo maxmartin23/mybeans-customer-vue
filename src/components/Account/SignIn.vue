@@ -6,7 +6,10 @@
   >
     <form class="pa-lg-16" @submit.prevent="signIn()">
       <div class="text-center mb-4">
-        <my-beans-logo aria-label="MyBeans" style="width: 16rem" />
+        <my-beans-logo
+          aria-label="MyBeans"
+          style="width: 16rem; max-width: 100%"
+        />
       </div>
       <h1 class="mb-4 text-center">Welcome back!</h1>
       <transition name="fade-shrink">
@@ -44,6 +47,7 @@
         block
         large
         elevation="0"
+        :disabled="!email || !password"
       >
         <v-progress-circular
           v-if="isLoading"
@@ -88,17 +92,18 @@ export default {
     signIn() {
       if (this.isLoading) return null;
       this.isLoading = true;
-      // return (this.errorMessage = this.errorMessage ? "" : "sdfsdsd");
       const { email, password } = this;
       this.$http
         .post("/auth/signin", { email, password })
         .then((res) => {
-          //TODO successful sign in
-          res;
+          const { user, token } = res.data;
+          user.token = token;
+          this.$store.dispatch("setUser", user);
+          this.$router.replace("/home");
         })
         .catch((err) => {
           this.errorMessage =
-            err.response?.data?.errorMessage ||
+            err.response?.data?.error ||
             "Sorry, something went wrong on our end.";
         })
         .finally(() => {
