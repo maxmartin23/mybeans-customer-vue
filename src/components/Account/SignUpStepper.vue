@@ -154,7 +154,7 @@ export default {
         province,
       } = this;
 
-      if (e1 === 1) return validator.validate(email) && password.length > 6;
+      if (e1 === 1) return validator.validate(email) && password.length >= 6;
       if (e1 === 2) return firstName.length > 0 && lastName.length > 0;
       if (e1 === 3)
         return street.length > 0 && city.length > 0 && province.length > 0;
