@@ -37,12 +37,7 @@
       />
     </v-radio-group>
     <label class="font-weight-semibold">Roasting level</label>
-    <v-slider
-      hint="Im a hint"
-      min="1"
-      max="10"
-      v-model="bean.roastingLevel"
-    />
+    <v-slider hint="Im a hint" min="1" max="10" v-model="bean.roastingLevel" />
     <v-text-field
       dense
       outlined
@@ -65,6 +60,15 @@
     >
       Update details
     </v-btn>
+    <v-btn
+      @click="deleteBean()"
+      color="error"
+      elevation="0"
+      rounded
+      class="py-6 mt-4"
+    >
+      Delete bean
+    </v-btn>
   </div>
 </template>
 <script>
@@ -75,24 +79,60 @@ export default {
       bean: JSON.parse(this.$route.query.bean ?? "null"),
     };
   },
-  computed:{
-    canUpdateBean(){
-      return true
-    }
+  computed: {
+    canUpdateBean() {
+      return true;
+    },
   },
   mounted() {
     console.log(this.bean);
     if (!this.bean) return this.$router.replace("/shop-home");
   },
-  methods:{
-    updateBean(){
-      const {coffeeBeanId, name, description, specie, origin, roastingLevel, price} = this.bean
-      this.$http.post("/coffeebeans/update", {coffeeBeanId, name, description, specie, origin, roastingLevel, price}).then(()=>{
-        alert("Bean updated successfully")
-        this.$router.replace("/shop-home")
-      })
-      .catch(err=>alert(err?.response?.data?.error ?? "Sorry, something went wrong."))
-    }
-  }
+  methods: {
+    updateBean() {
+      const {
+        coffeeBeanId,
+        name,
+        description,
+        specie,
+        origin,
+        roastingLevel,
+        price,
+      } = this.bean;
+      this.$http
+        .post("/coffeebeans/update", {
+          coffeeBeanId,
+          name,
+          description,
+          specie,
+          origin,
+          roastingLevel,
+          price,
+        })
+        .then(() => {
+          alert("Bean updated successfully");
+          this.$router.replace("/shop-home");
+        })
+        .catch((err) =>
+          alert(err?.response?.data?.error ?? "Sorry, something went wrong.")
+        );
+    },
+    deleteBean() {
+      const isConfirmed = confirm("Are you sure you want to delete this bean?");
+      if (!isConfirmed) return;
+
+      this.$http
+        .post("/coffeebeans/delete", {
+          coffeeBeanId: this.bean.coffeeBeanId,
+        })
+        .then(() => {
+          alert("Bean deleted successfully");
+          this.$router.replace("/shop-home");
+        })
+        .catch((err) =>
+          alert(err?.response?.data?.error ?? "Sorry, something went wrong.")
+        );
+    },
+  },
 };
 </script>
