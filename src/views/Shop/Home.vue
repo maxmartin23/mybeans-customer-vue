@@ -76,11 +76,15 @@
           <h4>Your shop has no coffee beans at the moment.</h4>
         </div>
         <div v-else>
-          <div v-for="(bean, i) in beans" :key="i" class="rounded-lg grey lighten-3 pa-4 mb-4">
+          <div
+            v-for="(bean, i) in beans"
+            :key="i"
+            class="rounded-lg grey lighten-3 pa-4 mb-4"
+          >
             <router-link :to="`bean?bean=${serialize(bean)}`">
               <p class="text-h6">{{ bean.name }}</p>
               <p v-if="!!bean.description">
-                {{bean.description}}
+                {{ bean.description }}
               </p>
             </router-link>
           </div>
@@ -96,6 +100,7 @@
         Add a coffee bean
       </v-btn>
     </div>
+    <v-btn color="error" @click="signOut()">Sign out</v-btn>
   </div>
 </template>
 
@@ -137,13 +142,25 @@ export default {
     },
   },
   methods: {
-    serialize(bean){
+    signOut() {
+      this.$store.dispatch("signOut");
+      this.$router.replace("/");
+    },
+    serialize(bean) {
       return JSON.stringify(bean);
     },
     addNewBean() {
-      const { name, description, specie, origin, roastingLevel, price } = this.newBean;
+      const { name, description, specie, origin, roastingLevel, price } =
+        this.newBean;
       this.$http
-        .post("/coffeebeans/create", { name, description, specie, origin, roastingLevel, price })
+        .post("/coffeebeans/create", {
+          name,
+          description,
+          specie,
+          origin,
+          roastingLevel,
+          price,
+        })
         .then((res) => {
           this.beans.push(res.data);
           alert("Coffee bean added successfully!");
