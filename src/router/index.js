@@ -4,6 +4,9 @@ import SignInSignUp from "../views/SignInSignUp";
 import Home from "../views/Home";
 import PinLocation from "../components/Home/PinLocation";
 import RequestLocation from "../components/Home/RequestLocation";
+import Account from "../views/Account";
+import ShopHome from "../views/Shop/Home";
+import Bean from "../views/Shop/Bean";
 Vue.use(VueRouter);
 
 const routes = [
@@ -21,7 +24,7 @@ const routes = [
     name: "SignUp",
     component: SignInSignUp,
     meta: {
-      title: "Create a Student Account",
+      title: "Create an account",
       requiresGuest: true,
     },
   },
@@ -32,6 +35,7 @@ const routes = [
     meta: {
       title: "Home",
       requiresAuth: true,
+      userType: 1,
     },
   },
   {
@@ -41,6 +45,7 @@ const routes = [
     meta: {
       title: "Request Location",
       requiresAuth: true,
+      userType: 1,
     },
   },
   {
@@ -50,6 +55,36 @@ const routes = [
     meta: {
       title: "Set Location",
       requiresAuth: true,
+      userType: 1,
+    },
+  },
+  {
+    path: "/account",
+    name: "Account",
+    component: Account,
+    meta: {
+      title: "My Account",
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/shop-home",
+    name: "ShopHome",
+    component: ShopHome,
+    meta: {
+      title: "My Shop",
+      requiresAuth: true,
+      userType: 2,
+    },
+  },
+  {
+    path: "/bean",
+    name: "Bean",
+    component: Bean,
+    meta: {
+      title: "Bean Details",
+      requiresAuth: true,
+      userType: 2,
     },
   },
 ];
@@ -65,13 +100,25 @@ router.beforeEach((to, from, next) => {
     to.matched.some((record) => record.meta.requiresAuth) &&
     !localStorage.getItem("token")
   )
-    next("/");
+    return next("/");
   if (
     to.matched.some((record) => record.meta.requiresGuest) &&
     localStorage.getItem("token")
   )
-    next("/home");
-  next();
+    return next(
+      parseInt(localStorage.getItem("userType")) === 1 ? "/home" : "/shop-home"
+    );
+  if (
+    to.matched.some(
+      (record) =>
+        record.meta.userType && record.meta.userType !== parseInt(localStorage.getItem("userType"))
+    )
+  )
+    return next(
+      parseInt(localStorage.getItem("userType")) === 1 ? "/home" : "/shop-home"
+    );
+
+  return next();
 });
 
 router.afterEach((to, from) => {

@@ -4,6 +4,8 @@
     <div v-for="(shop, i) in filteredShops" :key="i">
       {{ shop?.item?.name ?? shop.name }}
     </div>
+    <router-link to="account">My account</router-link>
+    <v-btn color="error" @click="signOut()">Sign out</v-btn>
   </div>
 </template>
 
@@ -27,6 +29,12 @@ export default {
       keyword: "",
       fuse: null,
     };
+  },
+  methods:{
+    signOut(){
+      this.$store.dispatch("signOut");
+      this.$router.replace("/")
+    }
   },
   created() {
     if (!this.location) return this.$router.replace(`/requestlocation`);

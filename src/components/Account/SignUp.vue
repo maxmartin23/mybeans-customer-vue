@@ -1,6 +1,6 @@
 <template>
   <v-sheet
-    class="pt-8 pa-lg-16 pa-6 px-0 rounded-xl"
+    class="pt-8 pt-lg-16 pt-6 px-0 rounded-xl"
     id="main-content"
     elevation="6"
   >
