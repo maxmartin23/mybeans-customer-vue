@@ -37,13 +37,21 @@
             :value="specie"
           />
         </v-radio-group>
-        <label class="font-weight-semibold">Roasting level</label>
-        <v-slider
-          hint="Im a hint"
-          min="1"
-          max="10"
-          v-model="newBean.roastingLevel"
-        />
+        <div>
+          <label class="font-weight-semibold">Roasting level</label>
+          <div class="d-flex mt-2">
+            <div class="font-weight-semibold" style="width: 120px">
+              {{['','Light roast', 'Medium roast', 'Medium dark', 'Dark roast'][newBean.roastingLevel]}}
+            </div>
+            <div class="flex-grow-1">
+              <v-slider
+                min="1"
+                max="4"
+                v-model="newBean.roastingLevel"
+              />
+            </div>
+          </div>
+        </div>
         <v-text-field
           dense
           outlined
@@ -123,9 +131,7 @@ export default {
     };
   },
   mounted() {
-    this.$http.get("/coffeebeans").then((res) => {
-      this.beans = res.data;
-    });
+    setTimeout(this.getBeans, 500);
   },
   computed: {
     canAddNewBean() {
@@ -144,7 +150,13 @@ export default {
   methods: {
     signOut() {
       this.$store.dispatch("signOut");
+      this.$store.commit("clearLocation")
       this.$router.replace("/");
+    },
+    getBeans() {
+      this.$http.get("/coffeebeans").then((res) => {
+        this.beans = res.data;
+      });
     },
     serialize(bean) {
       return JSON.stringify(bean);
