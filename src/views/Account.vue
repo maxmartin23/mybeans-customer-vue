@@ -67,11 +67,10 @@ export default {
     saveChanges() {
       this.$http
         .post("account/update", this.profile)
-        .then((res) => {
-          console.log(res.data);
+        .then(() => {
           alert("Profile updated successfully");
         })
-        .catch((err) => console.log(err?.response?.data?.error));
+        .catch((err) => alert(err?.response?.data?.error));
     },
   },
 };
