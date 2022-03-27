@@ -85,7 +85,6 @@ export default {
     },
   },
   mounted() {
-    console.log(this.bean);
     if (!this.bean) return this.$router.replace("/shop-home");
   },
   methods: {
