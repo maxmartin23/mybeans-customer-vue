@@ -99,7 +99,7 @@ export default {
           const { user, token } = res.data;
           user.token = token;
           this.$store.dispatch("setUser", user);
-          this.$router.replace(user.userType === 1 ? "/home" : "/shop-home");
+          this.$router.replace(user.userType === 1 ? "/requestlocation" : "/shop-home");
         })
         .catch((err) => {
           this.errorMessage =
