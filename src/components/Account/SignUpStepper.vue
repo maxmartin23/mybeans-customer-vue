@@ -14,7 +14,7 @@
           <span class="font-weight-semibold">Personal info</span>
         </v-stepper-step>
         <v-divider />
-        <v-stepper-step step="3">
+        <v-stepper-step step="4">
           <span class="font-weight-semibold">
             <span v-if="accountType !== 2">Shipping info</span>
             <span v-else>Vendor info</span>
@@ -181,7 +181,7 @@
         @click="currentStep < 4 ? currentStep++ : finishSignUp()"
         :disabled="!canGoNext"
       >
-        <span v-if="currentStep < 4">Continue</span>
+        <span v-if="currentStep <= 3">Continue</span>
         <span v-else>Create account</span>
       </v-btn>
       <v-btn plain @click="currentStep--" v-if="currentStep > 1" rounded
@@ -209,7 +209,7 @@ export default {
       shop: {
         name: "",
         description: "",
-        coords: { lat: 43.6532, lng: 79.3832 },
+        location: { lat: 43.6532, lng: -79.3832 },
       },
       isLoading: false,
     };
@@ -254,7 +254,7 @@ export default {
         province,
         shop,
       } = this;
-      const { name, description, coords } = shop;
+      const { name, description, location } = shop;
       const user = {
         userType: this.accountType,
         email,
@@ -269,7 +269,7 @@ export default {
         shop: {
           name,
           description,
-          coords,
+          location,
           address: `${street}, ${city}, ${province}`,
         },
       };
