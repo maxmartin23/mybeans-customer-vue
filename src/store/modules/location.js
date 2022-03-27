@@ -9,20 +9,24 @@ const store = {
       state.latitude = payload.latitude;
       state.longitude = payload.longitude;
     },
+    clearLocation(state) {
+      state.latitude = null;
+      state.longitude = null;
+    },
     setAddress(state, payload) {
       state.address = payload;
     },
   },
-  getters:{
-    getLocation(state){
+  getters: {
+    getLocation(state) {
       if (state.latitude && state.longitude) {
         return {
           latitude: state.latitude,
           longitude: state.longitude,
         };
       }
-      return null
-    }
-  }
+      return null;
+    },
+  },
 };
 export default store;

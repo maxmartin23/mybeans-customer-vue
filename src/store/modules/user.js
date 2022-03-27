@@ -9,7 +9,6 @@ const store = {
       name: "",
       address: "",
       description: "",
-
     },
     userType: localStorage.getItem("userType") ?? null,
     token: localStorage.getItem("token") ?? "",
@@ -19,6 +18,10 @@ const store = {
       localStorage.setItem("token", user.token);
       localStorage.setItem("userType", user.userType);
       commit("setUser", user);
+    },
+    setShop: ({ commit }, shop) => {
+      localStorage.setItem("shop", JSON.stringify(shop));
+      commit("setShop", shop);
     },
     signOut: ({ commit }) => {
       localStorage.removeItem("token");
@@ -36,9 +39,30 @@ const store = {
       state.token = token ?? state.token;
       state.userType = userType ?? state.userType;
     },
+    signOut(state) {
+      state.userId = "";
+      state.firstName = "";
+      state.lastName = "";
+      state.email = "";
+      state.token = "";
+      state.userType = null;
+    },
   },
   getters: {
     getToken: (state) => state.token,
+    getUser: (state) => ({
+      userId: state.userId,
+      firstName: state.firstName,
+      lastName: state.lastName,
+      email: state.email,
+      userType: state.userType ? parseInt(state.userType) : null,
+    }),
+    getShop: (state) => ({
+      shopId: state.shop.shopId,
+      name: state.shop.name,
+      address: state.shop.address,
+      description: state.shop.description,
+    }),
   },
 };
 
