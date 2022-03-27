@@ -19,7 +19,6 @@
       id="map"
       ref="map"
       :zoom="zoom"
-      :min-zoom="13"
       :center="center"
       @click="clickHandler"
     >
