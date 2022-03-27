@@ -7,8 +7,10 @@ import RequestLocation from "../components/Home/RequestLocation";
 import Account from "../views/Account";
 import ShopHome from "../views/Shop/Home";
 import Bean from "../views/Shop/Bean";
-Vue.use(VueRouter);
+import BeanDetails from "../views/BeanDetails";
+import Shops from "../views/Shops";
 
+Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
@@ -59,6 +61,16 @@ const routes = [
     },
   },
   {
+    path: "/shops",
+    name: "Shops",
+    component: Shops,
+    meta: {
+      title: "Shops",
+      requiresAuth: true,
+      userType: 1,
+    },
+  },
+  {
     path: "/account",
     name: "Account",
     component: Account,
@@ -75,6 +87,16 @@ const routes = [
       title: "My Shop",
       requiresAuth: true,
       userType: 2,
+    },
+  },
+  {
+    path: "/bean-details/:id",
+    name: "BeanDetails",
+    component: BeanDetails,
+    meta: {
+      title: "Bean Details",
+      requiresAuth: true,
+      userType: 1,
     },
   },
   {
@@ -111,7 +133,8 @@ router.beforeEach((to, from, next) => {
   if (
     to.matched.some(
       (record) =>
-        record.meta.userType && record.meta.userType !== parseInt(localStorage.getItem("userType"))
+        record.meta.userType &&
+        record.meta.userType !== parseInt(localStorage.getItem("userType"))
     )
   )
     return next(
