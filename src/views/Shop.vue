@@ -1,13 +1,22 @@
 <template>
   <div>
     <v-container>
-      <h1>
-        {{ shop.name }}
-      </h1>
-      <p class="body-1">
-        {{ shop.description }}
-      </p>
-      <p>{{ formatDistance(shop.distance) }} away</p>
+      <div class="py-4 d-flex align-center">
+        <div
+          class="shop-image"
+          :style="`background-image: url(${image ?? getRandomShopImage()})`"
+        ></div>
+        <div class="ml-4">
+          <h1>
+            {{ shop.name }}
+          </h1>
+          <p class="body-1 mb-1">
+            {{ shop.description }}
+          </p>
+          <p class="grey--text text--darken-2 mb-0"><small>{{ formatDistance(shop.distance) }} away</small></p>
+        </div>
+      </div>
+
       <v-divider class="my-4" />
       <h2 class="mb-6">{{ shop.name }}'s products</h2>
       <div class="row">
@@ -60,6 +69,7 @@ export default {
   data() {
     return {
       shop: JSON.parse(this.$route.query.shop ?? "null"),
+      image: this.$route.query.image ?? null,
     };
   },
   created() {
@@ -88,6 +98,16 @@ export default {
       ];
       return urls[Math.floor(Math.random() * urls.length)];
     },
+    getRandomShopImage() {
+      const shopImages = [
+        "https://images.pexels.com/photos/3205736/pexels-photo-3205736.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+        "https://images.pexels.com/photos/6151691/pexels-photo-6151691.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+        "https://images.pexels.com/photos/4947417/pexels-photo-4947417.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "https://images.pexels.com/photos/3951751/pexels-photo-3951751.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "https://images.pexels.com/photos/4906513/pexels-photo-4906513.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      ];
+      return shopImages[Math.floor(Math.random() * shopImages.length)];
+    },
   },
 };
 </script>
@@ -113,5 +133,13 @@ export default {
   font-size: 75%;
   border-radius: 1000px;
   transform: translateY(-50%);
+}
+
+.shop-image {
+  aspect-ratio: 1 / 1;
+  width: 8rem;
+  border-radius: 1000px;
+  background-position: center;
+  background-size: cover;
 }
 </style>

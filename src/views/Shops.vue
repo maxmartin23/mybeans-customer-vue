@@ -27,13 +27,14 @@
           </l-marker>
         </l-map>
       </div>
-      <div>
+      <div class="pb-16">
         <div v-for="(shop, i) in shops" :key="i" class="mb-4">
-          <router-link :to="`shop?shop=${stringify(shop)}`">
-            <div class="pa-4 grey lighten-2 rounded-lg">
-              <h3>
+          <router-link :to="`shop?shop=${stringify(shop)}&image=${shopImages[i]}`">
+            <div class="pa-4 d-flex grey lighten-2 rounded-lg align-center">
+              <div class="shop-image mr-2" :style="`background-image: url(${shopImages[i]})`"></div>
+              <h2>
                 {{ shop.name }}
-              </h3>
+              </h2>
             </div>
           </router-link>
         </div>
@@ -80,11 +81,35 @@ export default {
     centerMarker() {
       return this.L.latLng(this.location.latitude, this.location.longitude);
     },
+    shopImages(){
+      if (!this.shops) return null;
+      return this.shops.map(()=>this.getRandomShopImage())
+    }
   },
   methods: {
     stringify(obj) {
       return JSON.stringify(obj);
     },
+    getRandomShopImage() {
+      const shopImages = [
+        "https://images.pexels.com/photos/3205736/pexels-photo-3205736.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+        "https://images.pexels.com/photos/6151691/pexels-photo-6151691.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+        "https://images.pexels.com/photos/4947417/pexels-photo-4947417.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "https://images.pexels.com/photos/3951751/pexels-photo-3951751.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+        "https://images.pexels.com/photos/4906513/pexels-photo-4906513.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
+      ];
+      return shopImages[Math.floor(Math.random() * shopImages.length)];
+    },
   },
 };
 </script>
+
+<style lang="stylus" scoped>
+.shop-image{
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+</style>
