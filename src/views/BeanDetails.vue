@@ -46,10 +46,10 @@
                 {{ bean.name }}
               </h1>
               <h3 class="font-weight-medium grey--text text--darken-1">
-                Price: {{ bean.price }} CAD
+                {{ bean.price }} CAD
               </h3>
               <p class="body-1">
-                Description: {{ bean.description }}
+               Description: {{ bean.description }}
               </p>
               <p>
                 Origin: {{ bean.origin }}
