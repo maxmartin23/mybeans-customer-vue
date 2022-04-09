@@ -1,4 +1,6 @@
-# Software Project 2 (COMP 313:002)
+# Software Project 2 (COMP 313 Sec:002)
+
+Prof. Hao Lac
 
 ## Team Members
 
