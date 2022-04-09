@@ -8,7 +8,9 @@ import Account from "../views/Account";
 import ShopHome from "../views/Shop/Home";
 import Bean from "../views/Shop/Bean";
 import BeanDetails from "../views/BeanDetails";
+import ShopDetails from "../views/Shop/Details";
 import Shops from "../views/Shops";
+import Shop from "../views/Shop";
 
 Vue.use(VueRouter);
 const routes = [
@@ -71,6 +73,16 @@ const routes = [
     },
   },
   {
+    path: "/shop",
+    name: "Shop",
+    component: Shop,
+    meta: {
+      title: "Shop Details",
+      requiresAuth: true,
+      userType: 1,
+    },
+  },
+  {
     path: "/account",
     name: "Account",
     component: Account,
@@ -105,6 +117,16 @@ const routes = [
     component: Bean,
     meta: {
       title: "Bean Details",
+      requiresAuth: true,
+      userType: 2,
+    },
+  },
+  {
+    path: "/shop-details",
+    name: "ShopDetails",
+    component: ShopDetails,
+    meta: {
+      title: "Shop Details",
       requiresAuth: true,
       userType: 2,
     },
