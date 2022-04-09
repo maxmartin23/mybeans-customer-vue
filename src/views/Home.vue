@@ -102,25 +102,28 @@
               <div class="pa-4 position-relative">
                 <div class="price">
                   <div class="font-weight-semibold white--text">
-                    {{ bean.price }}$
+                    ${{ bean.price }}
                   </div>
                 </div>
-                <router-link
-                  :to="`bean-details/${bean.coffeeBeanId}?beanImage=${beanImages[i]}`"
-                >
-                  <span class="text-h5 font-weight-semibold">
-                    {{ bean.name }}
-                  </span>
-                </router-link>
+                <div style="width: calc(100% - 64px)">
+                  <router-link
+                    :to="`bean-details/${bean.coffeeBeanId}?beanImage=${beanImages[i]}`"
+                  >
+                    <span class="text-h5 font-weight-semibold">
+                      {{ bean.name }}
+                    </span>
+                  </router-link>
+                </div>
                 <p class="mb-1">
                   Sold by
-                  {{ shops.find((shop) => shop.shopId === bean.shopId).name }}
+                  <router-link :to="`/shop?shop=${stringify(shops.find(shop=>shop.shopId === bean.shopId))}`">{{ shops.find((shop) => shop.shopId === bean.shopId).name }}</router-link>
                 </p>
                 <p class="grey--text text--darken-2">
-                  <small
-                    >{{
+                  <small>
+                    {{
                       formatDistance(
-                        shops.find((shop) => shop.shopId === bean.shopId).distance
+                        shops.find((shop) => shop.shopId === bean.shopId)
+                          .distance
                       )
                     }}
                     away</small
@@ -185,6 +188,9 @@ export default {
     };
   },
   methods: {
+    stringify(obj){
+      return JSON.stringify(obj);
+    },
     signOut() {
       this.$store.dispatch("signOut");
       this.$store.commit("clearLocation");

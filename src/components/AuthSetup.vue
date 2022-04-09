@@ -17,6 +17,20 @@ export default {
   },
   created() {
     if (this.$store.getters.getToken) this.setToken();
+    const deez = this;
+    this.$http.interceptors.response.use(
+      function (response) {
+        return response;
+      },
+      function (error) {
+        const errorMessage = error?.response?.data?.error;
+        if (errorMessage === "Token is expired or invalid.") {
+          deez.$store.dispatch("signOut");
+          deez.$router.replace("/");
+        }
+        return Promise.reject(error);
+      }
+    );
   },
   methods: {
     setToken() {

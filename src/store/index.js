@@ -4,7 +4,7 @@ import windowSize from "./modules/windowsize";
 import user from "./modules/user";
 import location from "./modules/location";
 Vue.use(Vuex);
-
+Vue.prototype.$base = process.env.VUE_APP_BASE_URL;
 const store = new Vuex.Store({
   modules: {
     windowSize,
