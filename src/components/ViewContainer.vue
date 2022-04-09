@@ -5,7 +5,7 @@
       v-if="$store.getters.getUser.userType === 1"
     >
       <v-app-bar clipped-left v-if="$route.name !== 'RequestLocation'">
-          <my-beans-logo style="height: 24px" />
+          <my-beans-logo class="d-none d-md-block" style="height: 24px" />
         <v-spacer></v-spacer>
         <v-tabs align-with-title>
           <v-tab to="/home">Home</v-tab>
