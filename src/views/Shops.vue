@@ -6,15 +6,36 @@
         <l-map id="map" ref="map" :zoom="zoom" :center="center">
           <l-tile-layer :url="url" :attribution="attribution" />
           <l-marker :lat-lng="centerMarker" />
+          <l-marker
+            v-for="(shop, i) in shops"
+            :key="i"
+            :lat-lng="L.latLng(shop.location.lat, shop.location.lng)"
+          >
+            <l-popup>
+              <h3>{{ shop.name }}</h3>
+              <p>{{ shop.description }}</p>
+              <router-link :to="`shop?shop=${stringify(shop)}`"
+                >Visit shop</router-link
+              >
+            </l-popup>
+            <l-icon
+              :icon-url="`${$base}/img/svg/shoppin.svg`"
+              :icon-size="[48, 48]"
+              :icon-anchor="[23.5, 48]"
+            >
+            </l-icon>
+          </l-marker>
         </l-map>
       </div>
       <div>
         <div v-for="(shop, i) in shops" :key="i" class="mb-4">
-          <div class="pa-4 grey lighten-2 rounded-lg">
-            <h3>
-              {{ shop.name }}
-            </h3>
-          </div>
+          <router-link :to="`shop?shop=${stringify(shop)}`">
+            <div class="pa-4 grey lighten-2 rounded-lg">
+              <h3>
+                {{ shop.name }}
+              </h3>
+            </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -27,6 +48,7 @@ export default {
   name: "Shops",
   data() {
     return {
+      L,
       shops: JSON.parse(this.$route.query.shops),
       dialog: false,
       moving: false,
@@ -46,15 +68,23 @@ export default {
     if (!this.shops || !this.location) {
       this.$router.replace("/");
     }
-    this.center = L.latLng(this.location.latitude, this.location.longitude);
+    this.center = this.L.latLng(
+      this.location.latitude,
+      this.location.longitude
+    );
   },
   computed: {
     location() {
       return this.$store.getters.getLocation;
     },
-    centerMarker(){
-      return L.latLng(this.location.latitude, this.location.longitude);
-    }
+    centerMarker() {
+      return this.L.latLng(this.location.latitude, this.location.longitude);
+    },
+  },
+  methods: {
+    stringify(obj) {
+      return JSON.stringify(obj);
+    },
   },
 };
 </script>

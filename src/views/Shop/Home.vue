@@ -108,7 +108,6 @@
         Add a coffee bean
       </v-btn>
     </div>
-    <v-btn color="error" @click="signOut()">Sign out</v-btn>
   </div>
 </template>
 
@@ -148,11 +147,7 @@ export default {
     },
   },
   methods: {
-    signOut() {
-      this.$store.dispatch("signOut");
-      this.$store.commit("clearLocation")
-      this.$router.replace("/");
-    },
+   
     getBeans() {
       this.$http.get("/coffeebeans").then((res) => {
         this.beans = res.data;
@@ -182,8 +177,8 @@ export default {
           this.newBean.origin = "";
           this.newBean.roastingLevel = 0;
           this.newBean.price = 0;
-
           this.addBeanDialog = false;
+          window.location.reload();
         });
     },
   },
