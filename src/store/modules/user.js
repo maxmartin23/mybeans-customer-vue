@@ -1,6 +1,6 @@
 const store = {
   state: {
-    userId: "",
+    userId: localStorage.getItem("userId") ?? null,
     firstName: "",
     lastName: "",
     email: "",
@@ -16,6 +16,7 @@ const store = {
   actions: {
     setUser: ({ commit }, user) => {
       localStorage.setItem("token", user.token);
+      localStorage.setItem("userId", user.userId);
       localStorage.setItem("userType", user.userType);
       commit("setUser", user);
     },
@@ -25,6 +26,7 @@ const store = {
     },
     signOut: ({ commit }) => {
       localStorage.removeItem("token");
+      localStorage.removeItem("userId");
       localStorage.removeItem("userType");
       commit("signOut");
     },
