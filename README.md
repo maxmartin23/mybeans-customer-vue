@@ -1,15 +1,17 @@
 # Software Project 2 (COMP 313:002)
 
-# Team Members
+## Team Members
 
+```
 Max Martin III (301117493)
 Eunbee Lee (301083645)
 Jihyeok Kim (301105279)
 Wooram Moon (301098673)
 Hankyu Shin (301090893)
 Manpreet Kaur (301175898)
+```
 
-# MyBeans Application
+## MyBeans Application
 The 'MyBeans' application provides a function to help search for coffee beans vendors. 
 Sellers can register the type of beans they sell and the place of sale, 
 and buyers can filter the characteristics of beans 
