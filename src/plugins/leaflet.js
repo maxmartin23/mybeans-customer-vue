@@ -7,7 +7,7 @@ delete Icon.Default.prototype._getIconUrl;
 
 Icon.Default.mergeOptions({
   iconRetinaUrl: `img/svg/pin.svg`,
-  iconUrl: `$img/svg/pin.svg`,
+  iconUrl: `img/svg/pin.svg`,
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
