@@ -74,20 +74,23 @@
           <v-btn plain rounded class="py-6" @click="clearFilters()">
             <v-icon left>mdi-close</v-icon> Clear filters
           </v-btn>
-          <span v-if="filteredBeans.length > 0"
-            >{{ filteredBeans.length }} bean{{
-              filteredBeans.length === 1 ? "" : "s"
+          <span v-if="filteredBeans?.length > 0"
+            >{{ filteredBeans?.length }} bean{{
+              filteredBeans?.length === 1 ? "" : "s"
             }}
             found</span
           >
         </div>
         <div
-          v-if="!!filteredBeans && !filteredBeans.length"
+          v-if="!!filteredBeans && !filteredBeans?.length"
           class="grey pa-4 rounded-lg lighten-3"
         >
           <h3>No beans found matching your criteria.</h3>
         </div>
-        <div class="row" v-else>
+        <div class="row mt-4" v-else>
+          <div v-if="allBeans?.length === 0" class="col-12 pa-4 grey lighten-4 rounded-lg">
+            <h3>There are no beans yet.</h3>
+          </div>
           <div
             class="col-12 col-md-6 col-lg-4 col-xl-2"
             v-for="(bean, i) in !!filteredBeans ? filteredBeans : allBeans"
@@ -116,7 +119,14 @@
                 </div>
                 <p class="mb-1">
                   Sold by
-                  <router-link :to="`/shop?shop=${stringify(shops.find(shop=>shop.shopId === bean.shopId))}`">{{ shops.find((shop) => shop.shopId === bean.shopId).name }}</router-link>
+                  <router-link
+                    :to="`/shop?shop=${stringify(
+                      shops.find((shop) => shop.shopId === bean.shopId)
+                    )}`"
+                    >{{
+                      shops.find((shop) => shop.shopId === bean.shopId).name
+                    }}</router-link
+                  >
                 </p>
                 <p class="grey--text text--darken-2">
                   <small>
@@ -155,7 +165,8 @@ export default {
       return this.$store.getters.getLocation;
     },
     allBeans() {
-      if (!this.shops?.length) return null;
+      if (!this.shops) return null;
+      if (this.shops.length === 0) return [];
       return this.shops.reduce((acc, shop) => {
         return acc.concat(shop.beans);
       }, []);
@@ -188,7 +199,22 @@ export default {
     };
   },
   methods: {
-    stringify(obj){
+    getShops() {
+      this.$http
+        .get(`/shops`, {
+          params: {
+            lat: this.location.latitude,
+            lng: this.location.longitude,
+          },
+        })
+        .then((res) => {
+          this.shops = res.data;
+        })
+        .catch((err) => {
+          alert(err?.response?.data?.error ?? "Error loading shops");
+        });
+    },
+    stringify(obj) {
       return JSON.stringify(obj);
     },
     signOut() {
@@ -255,19 +281,7 @@ export default {
   },
   created() {
     if (!this.location) return this.$router.replace(`/requestlocation`);
-    this.$http
-      .get(`/shops`, {
-        params: {
-          lat: this.location.latitude,
-          lng: this.location.longitude,
-        },
-      })
-      .then((res) => {
-        this.shops = res.data;
-      })
-      .catch((err) => {
-        alert(err?.response?.data?.error ?? "Error loading shops");
-      });
+    setTimeout(this.getShops, 1000)
   },
 };
 </script>
