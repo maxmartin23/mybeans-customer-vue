@@ -15,6 +15,7 @@ Manpreet Kaur (301175898)
 
 ## MyBeans Application
 The 'MyBeans' application provides a function to help search for coffee beans vendors. 
-Sellers can register the type of beans they sell and the place of sale, 
-and buyers can filter the characteristics of beans 
-to have information on who sells beans that suit them.
+
+Sellers can register the type of beans they sell and the place of sale.
+
+Buyers can filter the characteristics of beans to have information on who sells beans that suit them.
