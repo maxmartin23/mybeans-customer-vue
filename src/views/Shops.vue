@@ -14,7 +14,7 @@
             <l-popup>
               <h3>{{ shop.name }}</h3>
               <p>{{ shop.description }}</p>
-              <router-link :to="`shop?shop=${stringify(shop)}`"
+              <router-link :to="`shop?shop=${shop.shopId}`"
                 >Visit shop</router-link
               >
             </l-popup>
