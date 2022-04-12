@@ -70,18 +70,17 @@ export default {
   name: "Shop",
   data() {
     return {
-      shop: !sessionStorage.getItem("shops")
-        ? null
-        : JSON.parse(sessionStorage.getItem("shops")).find(
-            (shop) => shop.shopId === this.$route.params.shop
-          ),
+      shop: null,
       image: this.$route.query.image ?? null,
     };
   },
   created() {
-    if (!this.shop) {
+    if (!sessionStorage.getItem("shops")) {
       return this.$router.replace("/home");
     }
+    const shops = JSON.parse(sessionStorage.getItem("shops") ?? "null");
+    const shopId = this.$route.query.shop;
+    this.shop = shops.find((shop) => shop.shopId === shopId);
   },
   computed: {
     beanImages() {
