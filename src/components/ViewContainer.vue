@@ -4,7 +4,7 @@
       class="w-100 h-100 position-relative"
       v-if="$store.getters.getUser.userType === 1"
     >
-      <v-app-bar clipped-left v-if="$route.name !== 'RequestLocation'">
+      <v-app-bar style="position: sticky; top: 0; left: 0" clipped-left v-if="$route.name !== 'RequestLocation'">
           <my-beans-logo class="d-none d-md-block" style="height: 24px" />
         <v-spacer></v-spacer>
         <v-tabs align-with-title>
