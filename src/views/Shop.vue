@@ -21,7 +21,7 @@
 
       <v-divider class="my-4" />
       <h2 class="mb-6">{{ shop.name }}'s products</h2>
-      <div class="row">
+      <div class="row pb-16">
         <div
           class="col-12 col-md-6 col-lg-4 col-xl-2"
           v-for="(bean, i) in shop.beans"
