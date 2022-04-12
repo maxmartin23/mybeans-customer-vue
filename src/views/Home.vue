@@ -88,7 +88,10 @@
           <h3>No beans found matching your criteria.</h3>
         </div>
         <div class="row mt-4" v-else>
-          <div v-if="allBeans?.length === 0" class="col-12 pa-4 grey lighten-4 rounded-lg">
+          <div
+            v-if="allBeans?.length === 0"
+            class="col-12 pa-4 grey lighten-4 rounded-lg"
+          >
             <h3>There are no beans yet.</h3>
           </div>
           <div
@@ -119,14 +122,9 @@
                 </div>
                 <p class="mb-1">
                   Sold by
-                  <router-link
-                    :to="`/shop?shop=${stringify(
-                      shops.find((shop) => shop.shopId === bean.shopId)
-                    )}`"
-                    >{{
-                      shops.find((shop) => shop.shopId === bean.shopId).name
-                    }}</router-link
-                  >
+                  <router-link :to="`/shop?shop=${shop.shopId}`">
+                    {{ shops.find((shop) => shop.shopId === bean.shopId).name }}
+                  </router-link>
                 </p>
                 <p class="grey--text text--darken-2">
                   <small>
@@ -282,7 +280,7 @@ export default {
   },
   created() {
     if (!this.location) return this.$router.replace(`/requestlocation`);
-    setTimeout(this.getShops, 1000)
+    setTimeout(this.getShops, 1000);
   },
 };
 </script>
