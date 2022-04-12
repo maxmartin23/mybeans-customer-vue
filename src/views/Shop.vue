@@ -68,7 +68,7 @@ export default {
   name: "Shop",
   data() {
     return {
-      shop: !sessionStorage.getItem("shop") ? null : (JSON.parse(sessionStorage.getItem("shops"))).find(shop => shop.shopId === this.$route.params.shop),
+      shop: !sessionStorage.getItem("shops") ? null : (JSON.parse(sessionStorage.getItem("shops"))).find(shop => shop.shopId === this.$route.params.shop),
       image: this.$route.query.image ?? null,
     };
   },
