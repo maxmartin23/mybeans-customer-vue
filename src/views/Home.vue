@@ -209,6 +209,7 @@ export default {
         })
         .then((res) => {
           this.shops = res.data;
+          sessionStorage.setItem("shops", JSON.stringify(res.data));
         })
         .catch((err) => {
           alert(err?.response?.data?.error ?? "Error loading shops");
@@ -224,7 +225,7 @@ export default {
     },
     goToShops() {
       if (!this.shops) return null;
-      return this.$router.push(`/shops?shops=${JSON.stringify(this.shops)}`);
+      return this.$router.push(`/shops`);
     },
     clearFilters() {
       this.searchForm = {

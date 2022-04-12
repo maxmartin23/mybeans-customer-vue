@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       L,
-      shops: JSON.parse(this.$route.query.shops),
+      shops: JSON.parse(sessionStorage.getItem("shops") ?? "null"),
       dialog: false,
       moving: false,
       isDebounced: false,
