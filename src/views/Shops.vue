@@ -29,7 +29,7 @@
       </div>
       <div class="pb-16">
         <div v-for="(shop, i) in shops" :key="i" class="mb-4">
-          <router-link :to="`shop?shop=${stringify(shop)}&image=${shopImages[i]}`">
+          <router-link :to="`shop?shop=${shop.shopId}&image=${shopImages[i]}`">
             <div class="pa-4 d-flex grey lighten-2 rounded-lg align-center">
               <div class="shop-image mr-2" :style="`background-image: url(${shopImages[i]})`"></div>
               <h2>
