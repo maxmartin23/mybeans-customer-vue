@@ -122,7 +122,7 @@
                 </div>
                 <p class="mb-1">
                   Sold by
-                  <router-link :to="`/shop?shop=${shop.shopId}`">
+                  <router-link :to="`/shop?shop=${bean.shopId}`">
                     {{ shops.find((shop) => shop.shopId === bean.shopId).name }}
                   </router-link>
                 </p>
