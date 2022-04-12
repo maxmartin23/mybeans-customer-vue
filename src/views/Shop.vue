@@ -80,13 +80,6 @@ export default {
   },
   created() {
     if (!this.shop) {
-      console.log(
-        !sessionStorage.getItem("shops")
-          ? null
-          : JSON.parse(sessionStorage.getItem("shops")).find(
-              (shop) => shop.shopId === this.$route.params.shop
-            )
-      );
       return this.$router.replace("/home");
     }
   },
