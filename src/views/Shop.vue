@@ -13,7 +13,9 @@
           <p class="body-1 mb-1">
             {{ shop.description }}
           </p>
-          <p class="grey--text text--darken-2 mb-0"><small>{{ formatDistance(shop.distance) }} away</small></p>
+          <p class="grey--text text--darken-2 mb-0">
+            <small>{{ formatDistance(shop.distance) }} away</small>
+          </p>
         </div>
       </div>
 
@@ -68,12 +70,25 @@ export default {
   name: "Shop",
   data() {
     return {
-      shop: !sessionStorage.getItem("shops") ? null : (JSON.parse(sessionStorage.getItem("shops"))).find(shop => shop.shopId === this.$route.params.shop),
+      shop: !sessionStorage.getItem("shops")
+        ? null
+        : JSON.parse(sessionStorage.getItem("shops")).find(
+            (shop) => shop.shopId === this.$route.params.shop
+          ),
       image: this.$route.query.image ?? null,
     };
   },
   created() {
-    if (!this.shop) this.$router.replace("/home");
+    if (!this.shop) {
+      console.log(
+        !sessionStorage.getItem("shops")
+          ? null
+          : JSON.parse(sessionStorage.getItem("shops")).find(
+              (shop) => shop.shopId === this.$route.params.shop
+            )
+      );
+      return this.$router.replace("/home");
+    }
   },
   computed: {
     beanImages() {
